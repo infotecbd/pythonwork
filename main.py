@@ -8,7 +8,7 @@ from files import contactPersonData, save_contacts
 
 
 def main():
-    # Load contacts from file on startup
+
     contacts = contactPersonData()
 
     while True:
