@@ -1,4 +1,5 @@
 import add_book
+import view_allbooks
 
 all_books=[] # empty list to store book input
 
@@ -19,7 +20,7 @@ while True:
     elif menu == "1":
         all_books = add_book.add_books(all_books)
     elif menu == "2":
-        print("Book List here")
+        view_allbooks.view_all_books(all_books)
     
     else:
         print("You have chosen invalid number")
