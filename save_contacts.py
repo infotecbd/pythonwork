@@ -1,6 +1,3 @@
-# title, authors, ISBN, publishing year, price and quanity
-from MySQLdb import connect
-
 
 def  save_contacts(all_contacts):
     with open("all_contacts.csv", "w") as fp:
