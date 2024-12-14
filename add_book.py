@@ -1,40 +1,27 @@
-# title, authors, ISBN, publishing year, price and quanity
+import json
 
-from save_allbooks import save_allbooks
-import random
-from datetime import datetime
+BOOKS_FILE = "books.json"
 
-def add_books(all_books):
-    title = input("Please enter a book Title: ")
-    author = input("Please enter author name: ")
-    isbn = input("Please input a ISBN number: ")
-    year= input("Please input year of Published: ")
-    price= input("Please input price of the Book: ")
-    quantity= input("Please input the quantity of the books: ")
+def load_books():
+    try:
+        with open(BOOKS_FILE, "r") as f:
+            return json.load(f)
+    except FileNotFoundError:
+        return []
 
-    isbn = random.randint(10000,99999)
-    bookAddedAt = datetime.now().strftime("%d-%m-%Y %H:%M:%S")
+def save_books(books):
+    with open(BOOKS_FILE, "w") as f:
+        json.dump(books, f, indent=4)
 
-    # Add all in a dictionary
-    book = {
-        "title" : title,
-        "author" : author,
-        "isbn" : isbn,
-        "year" : year,
-        "price" : price,
-        "quantity" : quantity
+def add_book():
+    books = load_books()
+    title = input("Enter the title of the book: ")
+    try:
+        quantity = int(input("Enter the quantity of the book: "))
+    except ValueError:
+        print("Invalid input! Quantity should be a number.")
+        return
 
-     
-
-    }
-
-    #Now need to append it in all_books[] list
-    all_books.append(book)
-
-    # Now create save function to save all books which are got input from user
-
-    save_allbooks(all_books)
-
-    print ("Books added successful")
-
-    return all_books
+    books.append({"title": title, "quantity": quantity})
+    save_books(books)
+    print(f"\nBook '{title}' added with quantity {quantity}.\n")

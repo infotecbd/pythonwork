@@ -1,7 +1,7 @@
 import add_book
 import view_allbooks
 
-all_books=[] # empty list to store book input......
+all_books=[] # empty list to store book input
 
 while True:
     print("Welcome to Library Management System")
